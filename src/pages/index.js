@@ -7,10 +7,11 @@ export async function getServerSideProps() {
   return { props: { repo } };
 }
 
-export default function Page({ repo }) {
+export default function Home({ repo }) {
   return (
     <main>
-      <p>{repo.stargazers_count}</p>
+      <h1>Home page</h1>
+      <p>server responded with: {repo.stargazers_count}</p>
     </main>
   );
 }

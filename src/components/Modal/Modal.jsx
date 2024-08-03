@@ -1,4 +1,4 @@
-import styles from "./modal.module.scss";
+import styles from "./Modal.module.scss";
 
 export default function Modal({ message, onClose }) {
   return (

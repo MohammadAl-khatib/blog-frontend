@@ -19,7 +19,7 @@ export default function Header() {
             <FaFileAlt className={styles.homeIcon} />
             <span className={styles.platformName}>Blogify</span>
           </Link>
-          <span className={styles.description}>Ideas Worth Reading</span>
+          <span className={styles.description}>Ideas Worth Sharing</span>
         </div>
         <ul className={styles.navList}>
           {!name && (

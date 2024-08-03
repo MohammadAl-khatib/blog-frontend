@@ -1,0 +1,71 @@
+.nav {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homeSection {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homeLink {
+  display: flex;
+  align-items: center;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.homeIcon {
+  font-size: 1.5rem;
+}
+
+.platformName {
+  margin-left: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+}
+
+.navLink:hover {
+  color: #007bff;
+}
+
+.navIcon {
+  margin-right: 5px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: "Dancing Script", cursive;
+}
+
+@media (max-width: 768px) {
+  .description {
+    display: none;
+  }
+}

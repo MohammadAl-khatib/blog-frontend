@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "./Header/Header.jsx";
 
 export default function Layout({ children }) {
   return (

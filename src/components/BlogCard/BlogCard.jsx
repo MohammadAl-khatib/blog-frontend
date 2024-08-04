@@ -3,10 +3,10 @@ import Link from "next/link";
 import React from "react";
 import { formatISO9075 } from "date-fns";
 
-import styles from './BlogCard.module.scss';
+import styles from "./BlogCard.module.scss";
 
-export default function BlogCard({ _id,  cover, title, author, createdAt, summary}) {
-    const imageUrl = cover ? `http://localhost:4000/${cover}` : 'https://via.placeholder.com/340x200/eeeeee/cccccc?text=Image+Placeholder';
+export default function BlogCard({ _id, cover, title, author, createdAt, summary }) {
+  const imageUrl = cover ? `http://localhost:4000/${cover}` : "https://via.placeholder.com/340x200/eeeeee/cccccc?text=Image+Placeholder";  
 
   return (
     <div className={styles.post}>

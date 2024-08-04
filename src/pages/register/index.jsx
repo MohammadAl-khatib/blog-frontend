@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import styles from "./Register.module.scss";
 import Modal from "@/components/Modal/Modal";
+import { useRouter } from "next/router";
 
 const validateForm = ({ username, password }) => {
   let errors = [];
@@ -19,7 +20,7 @@ const validateForm = ({ username, password }) => {
   return errors;
 };
 
-const handleSubmit = async ({ event, setModalMessage, setShowModal, username, password, setPassword, setUsername }) => {
+const handleSubmit = async ({ event, setModalMessage, setShowModal, username, password, setPassword, setUsername, router }) => {
   event.preventDefault();
   const errors = validateForm({ username, password });
   if (errors.length > 0) {
@@ -45,6 +46,7 @@ const handleSubmit = async ({ event, setModalMessage, setShowModal, username, pa
     // Clear inputs
     setPassword("");
     setUsername("");
+    router.push('/login')
   } else if (data.error === "Duplicate Key") {
     // Duplicate user name
     setModalMessage("Username already in use, try another name");
@@ -60,13 +62,14 @@ export default function Register() {
   const [modalMessage, setModalMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Register</h1>
       <form
         className={styles.form}
-        onSubmit={(event) => handleSubmit({ event, setModalMessage, setShowModal, username, password, setPassword, setUsername })}
+        onSubmit={(event) => handleSubmit({ event, setModalMessage, setShowModal, username, password, setPassword, setUsername, router })}
       >
         <input
           className={`${styles.userName} ${styles.input}`}

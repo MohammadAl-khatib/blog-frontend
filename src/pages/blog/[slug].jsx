@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { formatISO9075 } from "date-fns";
 import styles from "./Blog.module.scss";

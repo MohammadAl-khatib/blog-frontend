@@ -14,3 +14,12 @@ body {
   /* make the quill fill the container */
   height: 100%;
 }
+
+.home-page-blogs-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; 
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}

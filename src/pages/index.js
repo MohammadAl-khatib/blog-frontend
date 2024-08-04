@@ -1,17 +1,30 @@
+import BlogCard from "@/components/BlogCard/BlogCard";
+
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch("https://api.github.com/repos/vercel/next.js");
-  const repo = await res.json();
+  const res = await fetch("http://localhost:4000/posts");
+  const data = await res.json();
   // Pass data to the page via props
-
-  return { props: { repo } };
+  return { props: { data } };
 }
 
-export default function Home({ repo }) {
+export default function Home({ data }) {
   return (
-    <main>
-      <h1>Home page</h1>
-      <p>server responded with: {repo.stargazers_count}</p>
-    </main>
+    <div className="home-page-blogs-container">
+      {data.map((blog) => {
+        const { _id, cover, title, author, createdAt, summary } = blog;
+        return (
+          <BlogCard
+            key={_id}
+            _id={_id}
+            cover={cover}
+            title={title}
+            author={author}
+            createdAt={createdAt}
+            summary={summary}
+          />
+        );
+      })}
+    </div>
   );
 }

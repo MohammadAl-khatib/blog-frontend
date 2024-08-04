@@ -1,0 +1,38 @@
+.container {
+  margin-top: 40px;
+}
+
+.form {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.input {
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 5px 7px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.title {
+  height: 30px;
+}
+
+.summary {
+  height: 60px;
+}
+
+.button {
+  cursor: pointer;
+  width: 40%;
+  display: block;
+  background-color: #555;
+  border: 0;
+  color: #fff;
+  border-radius: 5px;
+  padding: 7px 0;
+  margin: 60px auto 0;
+  height: 40px;
+}

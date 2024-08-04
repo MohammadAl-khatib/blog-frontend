@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 async function handleSubmit({ event, username, password, setUserData, setModalMessage, setShowModal, router }) {
   event.preventDefault();
 
-  if(!username || !password) {
+  if (!username || !password) {
     setModalMessage("Please, enter username and password");
     setShowModal(true);
     return;
@@ -24,22 +24,22 @@ async function handleSubmit({ event, username, password, setUserData, setModalMe
 
   const response = await fetch(url, {
     method: "get",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
-     },
+    },
     credentials: "include",
   });
 
- const { status } = response;
-  
+  const { status } = response;
+
   if (status === 200) {
     response.json().then((userData) => {
       setUserData(userData);
     });
 
     // Redirect to homepage
-    router.push('/');
-  } else if(status === 400) {
+    router.push("/");
+  } else if (status === 400) {
     setModalMessage("Wrong username or password!");
     setShowModal(true);
   } else {
@@ -62,10 +62,9 @@ export default function Login() {
       <h1 className={styles.heading}>Login</h1>
       <form
         className={styles.form}
-        onSubmit={(event) => handleSubmit({ event, setModalMessage, setShowModal, username, password, setUserData, router })}
-      >
+        onSubmit={(event) => handleSubmit({ event, setModalMessage, setShowModal, username, password, setUserData, router })}>
         <input
-          className={`${styles.userName} ${styles.input}`}
+          className={styles.input}
           type="text"
           placeholder="username"
           value={username}
@@ -73,7 +72,7 @@ export default function Login() {
         />
         <div className={styles.passwordContainer}>
           <input
-            className={`${styles.password} ${styles.input}`}
+            className={styles.input}
             type={showPassword ? "text" : "password"}
             placeholder="password"
             value={password}
@@ -82,15 +81,13 @@ export default function Login() {
           <button
             type="button"
             className={styles.eyeIcon}
-            onClick={() => setShowPassword(!showPassword)}
-          >
+            onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
         </div>
         <button
           className={styles.button}
-          type="submit"
-        >
+          type="submit">
           Login
         </button>
       </form>

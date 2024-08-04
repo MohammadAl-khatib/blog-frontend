@@ -1,9 +1,6 @@
 import { useState } from "react";
 import styles from "./Create.module.scss";
 import dynamic from "next/dynamic";
-// import Editor from "@/components/Editor/Editor";
-
-// const Editor = dynamic(() => import('../../components/Editor/Editor'));
 
 const Editor = dynamic(() => import("../../components/Editor/Editor"), {
   ssr: false, // don't render server side, this uses document
@@ -12,11 +9,16 @@ const Editor = dynamic(() => import("../../components/Editor/Editor"), {
 async function createNewPost({ event, title, summary, file, content }) {
   event.preventDefault();
 
+  const data = new FormData();
+  data.set("title", title);
+  data.set("summary", summary);
+  data.set("content", content);
+  data.set("file", file);
+
   await fetch("http://localhost:4000/post", {
     method: "POST",
+    body: data,
     credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, summary }),
   });
 }
 

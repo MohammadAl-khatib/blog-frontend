@@ -6,7 +6,8 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
   const { userData, setUserData } = useContext(UserContext);
-  const { name } = userData;
+  const { username } = userData;
+  const isLoggedIn = !!username;
 
   return (
     <nav className={styles.nav}>
@@ -22,12 +23,22 @@ export default function Header() {
           <span className={styles.description}>Ideas Worth Sharing</span>
         </div>
         <ul className={styles.navList}>
-          {!name && (
+        {isLoggedIn && (
+            <li>
+              <Link
+                href="/"
+                onClick={() => setUserData({})}
+                className={styles.navLink}
+              >
+                <FaSignOutAlt className={styles.navIcon} /> Logout
+              </Link>
+            </li>
+          )}
+          {!isLoggedIn && (
             <>
               <li>
                 <Link
                   href="/login"
-                  onClick={() => setUserData({ name: "Mock User" })}
                   className={styles.navLink}
                 >
                   <FaSignInAlt className={styles.navIcon} /> Login
@@ -42,17 +53,6 @@ export default function Header() {
                 </Link>
               </li>
             </>
-          )}
-          {name && (
-            <li>
-              <Link
-                href="/"
-                onClick={() => setUserData({})}
-                className={styles.navLink}
-              >
-                <FaSignOutAlt className={styles.navIcon} /> Logout
-              </Link>
-            </li>
           )}
         </ul>
       </div>

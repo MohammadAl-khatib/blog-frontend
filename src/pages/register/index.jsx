@@ -46,7 +46,9 @@ const handleSubmit = async ({ event, setModalMessage, setShowModal, username, pa
     // Clear inputs
     setPassword("");
     setUsername("");
-    router.push('/login')
+    setTimeout(() => {
+      router.push('/login')
+    }, 2000)
   } else if (data.error === "Duplicate Key") {
     // Duplicate user name
     setModalMessage("Username already in use, try another name");

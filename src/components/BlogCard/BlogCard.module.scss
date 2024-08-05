@@ -54,6 +54,9 @@
 }
 
 .info {
+  display: flex;
+  align-self: center;
+  gap: 10px;
   margin: 8px 0;
   font-size: 0.875rem;
   color: #666;

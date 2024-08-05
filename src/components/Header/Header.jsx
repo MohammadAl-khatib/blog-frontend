@@ -1,13 +1,22 @@
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { FaFileAlt, FaSignInAlt, FaSignOutAlt, FaUserPlus, FaPen } from "react-icons/fa";
 import styles from "./Header.module.scss";
 
+async function logout ({setUserData }) {
+  setUserData({});
+  await fetch("http://localhost:4000/logout", {
+    method: "POST",
+    credentials: 'include',
+  });
+}
+
 export default function Header() {
-  const { userData, setUserData } = useContext(UserContext);
-  const { username } = userData;
-  const isLoggedIn = !!username;
+  const {
+    userData: { username: isLoggedIn },
+    setUserData,
+  } = useContext(UserContext);
 
   return (
     <nav className={styles.nav}>
@@ -34,7 +43,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/"
-                  onClick={() => setUserData({})}
+                  onClick={() => logout({ setUserData})}
                   className={styles.navLink}>
                   <FaSignOutAlt className={styles.navIcon} /> Logout
                 </Link>

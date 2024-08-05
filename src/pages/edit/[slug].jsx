@@ -17,6 +17,26 @@ export async function getServerSideProps({ params }) {
   return { props: { data } };
 }
 
+async function deletePost({ event, id, setModalMessage, setShowModal, router }) {
+  event.preventDefault();  
+
+  const response = await fetch(`http://localhost:4000/delete/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  if (response.status === 200) {
+    setModalMessage("Blog has been deleted!");
+    setShowModal(true);
+    setTimeout(() => {
+      router.push(`/`);
+    }, 2000);
+  } else {
+    setModalMessage("Something went wrong, try again later");
+    setShowModal(true);
+  }
+}
+
 async function updatePost({ event, title, summary, file, content, setModalMessage, setShowModal, id, router }) {
   event.preventDefault();
 
@@ -54,7 +74,7 @@ export default function Edit({ data }) {
   const [modalMessage, setModalMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isModified, setIsModified] = useState(false);
-  const router = useRouter();
+  const router = useRouter();  
 
   useEffect(() => {
     const isAnyFieldModified = title !== data.title || summary !== data.summary || file !== "" || content !== data.content;
@@ -96,6 +116,11 @@ export default function Edit({ data }) {
           className={styles.button}
           disabled={!isModified}>
           Edit Post
+        </button>
+        <button
+          onClick={(event) => deletePost({ event, id: data._id, setModalMessage, setShowModal, router })}
+          className={styles.deleteButton}>
+          Delete Post
         </button>
       </form>
       {showModal && (

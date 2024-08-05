@@ -24,7 +24,8 @@
   height: 60px;
 }
 
-.button {
+.button,
+.deleteButton {
   cursor: pointer;
   width: 40%;
   display: block;
@@ -43,4 +44,9 @@
     opacity: 0.7;
     pointer-events: none;
   }
+}
+
+.deleteButton {
+  margin-top: 10px;
+  background-color: #db4747;
 }

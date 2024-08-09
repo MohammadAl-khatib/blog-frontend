@@ -36,6 +36,7 @@ const handleSubmit = async ({ event, setModalMessage, setShowModal, username, pa
     method: "POST",
     body: JSON.stringify({ username, password }),
     headers: { "Content-Type": "application/json" },
+    credentials: 'include'
   });
 
   const data = await response.json();

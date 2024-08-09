@@ -2,10 +2,11 @@
 import React from "react";
 import { formatISO9075 } from "date-fns";
 import styles from "./Blog.module.scss";
+import { API } from "../../../constants";
 
 export async function getServerSideProps({ params }) {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:4000/post/${params.slug}`);
+  const res = await fetch(`${API}/post/${params.slug}`);
   const data = await res.json();
 
   // Pass data to the page via props
@@ -23,7 +24,7 @@ export default function Blog({ data }) {
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
-          src={`http://localhost:4000/${cover}`}
+          src={`${API}/${cover}`}
           alt=""
         />
       </div>

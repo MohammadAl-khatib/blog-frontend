@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 
 import Modal from "@/components/Modal/Modal";
 import styles from "./Create.module.scss";
+import { API } from "../../../constants";
 
 const Editor = dynamic(() => import("../../components/Editor/Editor"), {
   ssr: false, // don't render server side, this uses document
@@ -17,7 +18,7 @@ async function createNewPost({ event, title, summary, file, content, setModalMes
   data.set("content", content);
   data.set("file", file);
 
-  const response = await fetch("http://localhost:4000/post", {
+  const response = await fetch(`${API}/post`, {
     method: "POST",
     body: data,
     credentials: "include",

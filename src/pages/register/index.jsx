@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Register.module.scss";
 import Modal from "@/components/Modal/Modal";
 import { useRouter } from "next/router";
+import { API } from "../../../constants";
 
 const validateForm = ({ username, password }) => {
   let errors = [];
@@ -31,7 +32,7 @@ const handleSubmit = async ({ event, setModalMessage, setShowModal, username, pa
     return;
   }
 
-  const response = await fetch("http://localhost:4000/register", {
+  const response = await fetch(`${API}/register`, {
     method: "POST",
     body: JSON.stringify({ username, password }),
     headers: { "Content-Type": "application/json" },

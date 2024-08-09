@@ -6,13 +6,14 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 import styles from "./BlogCard.module.scss";
 import { UserContext } from "@/contexts/UserContext";
+import { API } from "../../../constants";
 
 export default function BlogCard({ _id, cover, title, author, createdAt, summary }) {
   const {
     userData: { username },
   } = useContext(UserContext);
 
-  const imageUrl = cover ? `http://localhost:4000/${cover}` : "https://via.placeholder.com/340x200/eeeeee/cccccc?text=Image+Placeholder";
+  const imageUrl = cover ? `${API}/${cover}` : "https://via.placeholder.com/340x200/eeeeee/cccccc?text=Image+Placeholder";
 
   return (
     <div className={styles.post}>

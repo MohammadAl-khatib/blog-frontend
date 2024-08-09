@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./Edit.module.scss";
 import { useRouter } from "next/router";
+import { API } from "../../../constants";
 
 const Editor = dynamic(() => import("../../components/Editor/Editor"), {
   ssr: false, // don't render server side, this uses document
@@ -10,7 +11,7 @@ const Editor = dynamic(() => import("../../components/Editor/Editor"), {
 
 export async function getServerSideProps({ params }) {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:4000/post/${params.slug}`);
+  const res = await fetch(`${API}/post/${params.slug}`);
   const data = await res.json();
 
   // Pass data to the page via props
@@ -20,7 +21,7 @@ export async function getServerSideProps({ params }) {
 async function deletePost({ event, id, setModalMessage, setShowModal, router }) {
   event.preventDefault();  
 
-  const response = await fetch(`http://localhost:4000/delete/${id}`, {
+  const response = await fetch(`${API}/delete/${id}`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -46,7 +47,7 @@ async function updatePost({ event, title, summary, file, content, setModalMessag
   data.set("content", content);
   data.set("file", file);
 
-  const response = await fetch(`http://localhost:4000/edit/${id}`, {
+  const response = await fetch(`${API}/edit/${id}`, {
     method: "PUT",
     body: data,
     credentials: "include",

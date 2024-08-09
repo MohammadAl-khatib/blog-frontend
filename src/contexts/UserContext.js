@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { API } from "../../constants";
 
 export const UserContext = createContext({});
 
@@ -7,7 +8,7 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     async function getIsLoggedIn() {
-      const response = await fetch("http://localhost:4000/profile", {
+      const response = await fetch(`${API}/profile`, {
         credentials: "include",
       });
       const data = await response.json();

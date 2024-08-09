@@ -5,6 +5,7 @@ import { UserContext } from "@/contexts/UserContext";
 import Modal from "@/components/Modal/Modal";
 import styles from "./Login.module.scss";
 import { useRouter } from "next/router";
+import { API } from "../../../constants";
 
 async function handleSubmit({ event, username, password, setUserData, setModalMessage, setShowModal, router }) {
   event.preventDefault();
@@ -15,7 +16,7 @@ async function handleSubmit({ event, username, password, setUserData, setModalMe
     return;
   }
 
-  const baseUrl = "http://localhost:4000/login";
+  const baseUrl = `${API}/login`;
   const params = new URLSearchParams({
     username,
     password,

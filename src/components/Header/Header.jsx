@@ -3,10 +3,11 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { FaFileAlt, FaSignInAlt, FaSignOutAlt, FaUserPlus, FaPen } from "react-icons/fa";
 import styles from "./Header.module.scss";
+import { API } from "../../../constants";
 
 async function logout ({setUserData }) {
   setUserData({});
-  await fetch("http://localhost:4000/logout", {
+  await fetch(`${API}/logout`, {
     method: "POST",
     credentials: 'include',
   });

@@ -1,8 +1,9 @@
 import BlogCard from "@/components/BlogCard/BlogCard";
+import { API } from "../../constants";
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch("http://localhost:4000/posts");
+  const res = await fetch(`${API}/posts`);
   const data = await res.json();
   // Pass data to the page via props
   return { props: { data } };

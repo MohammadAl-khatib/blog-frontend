@@ -5,7 +5,7 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   const [userData, setUserData] = useState({});
-
+  
   useEffect(() => {
     async function getIsLoggedIn() {
       const response = await fetch(`${API}/profile`, {

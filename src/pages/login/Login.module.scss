@@ -51,3 +51,9 @@
   font-size: 15px;
   transition: color 0.3s;
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+}

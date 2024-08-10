@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { formatISO9075 } from "date-fns";
+import EditButton from "@/components/EditButton/EditButton";
 import styles from "./Blog.module.scss";
 import { API } from "../../../constants";
 
@@ -14,11 +15,19 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Blog({ data }) {
-  const { title, createdAt, author, cover, content } = data;
+  const { title, createdAt, author, cover, content, _id } = data;
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.heading}>{title}</h1>
+      <h1 className={styles.heading}>
+        <EditButton
+          className={styles.absolutePosition}
+          _id={_id}
+          author={author}
+          showText
+        />
+        {title}
+      </h1>
       <time className={styles.createdAt}>{formatISO9075(new Date(createdAt))}</time>
       <div className={styles.author}>by @{author.username}</div>
       <div className={styles.imageContainer}>

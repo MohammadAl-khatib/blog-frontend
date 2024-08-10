@@ -18,6 +18,7 @@
   text-transform: capitalize;
   text-align: center;
   margin: 10px 0 5px;
+  position: relative;
 }
 
 .createdAt {
@@ -42,4 +43,14 @@
 
 .content li {
   margin-bottom: 10px;
+}
+
+.absolutePosition {
+  top: 0;
+  left: 0;
+  padding: 0;
+
+  svg {
+    fill: rgb(215, 53, 53);
+  }
 }

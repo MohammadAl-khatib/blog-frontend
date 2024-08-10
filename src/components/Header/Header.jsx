@@ -5,11 +5,11 @@ import { FaFileAlt, FaSignInAlt, FaSignOutAlt, FaUserPlus, FaPen } from "react-i
 import styles from "./Header.module.scss";
 import { API } from "../../../constants";
 
-async function logout ({setUserData }) {
+async function logout({ setUserData }) {
   setUserData({});
   await fetch(`${API}/logout`, {
     method: "POST",
-    credentials: 'include',
+    credentials: "include",
   });
 }
 
@@ -44,7 +44,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/"
-                  onClick={() => logout({ setUserData})}
+                  onClick={() => logout({ setUserData })}
                   className={styles.navLink}>
                   <FaSignOutAlt className={styles.navIcon} /> Logout
                 </Link>

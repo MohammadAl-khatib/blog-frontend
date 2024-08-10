@@ -1,0 +1,26 @@
+.blogsButton {
+  padding: 8px 0 0;
+  background-color: #f5f5f5;
+}
+
+.myBlogsButton {
+  display: flex;
+  align-items: center;
+  background: #3b918e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: auto;
+}
+
+.myBlogsButton:hover {
+  background: #759bc1;
+}
+
+.myBlogsIcon {
+  margin-right: 8px;
+}

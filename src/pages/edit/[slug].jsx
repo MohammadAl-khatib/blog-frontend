@@ -1,9 +1,11 @@
-import Modal from "@/components/Modal/Modal";
-import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import styles from "./Edit.module.scss";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+
+import Modal from "@/components/Modal/Modal";
+import styles from "./Edit.module.scss";
 import { API } from "../../../constants";
+import { UserContext } from "@/contexts/UserContext";
 
 const Editor = dynamic(() => import("../../components/Editor/Editor"), {
   ssr: false, // don't render server side, this uses document
@@ -19,7 +21,7 @@ export async function getServerSideProps({ params }) {
 }
 
 async function deletePost({ event, id, setModalMessage, setShowModal, router }) {
-  event.preventDefault();  
+  event.preventDefault();
 
   const response = await fetch(`${API}/delete/${id}`, {
     method: "DELETE",
@@ -75,13 +77,18 @@ export default function Edit({ data }) {
   const [modalMessage, setModalMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isModified, setIsModified] = useState(false);
-  const router = useRouter();  
+  const router = useRouter();
+  const {
+    userData: { username: isLoggedIn },
+  } = useContext(UserContext);
 
   useEffect(() => {
     const isAnyFieldModified = title !== data.title || summary !== data.summary || file !== "" || content !== data.content;
 
     setIsModified(isAnyFieldModified);
   }, [title, summary, file, content, data]);
+
+  if (!isLoggedIn) return <h1>Please login to edit post!</h1>;
 
   return (
     <div className={styles.container}>

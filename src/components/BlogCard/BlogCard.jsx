@@ -1,18 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import React, { useContext } from "react";
+import React from "react";
 import { formatISO9075 } from "date-fns";
-import { FaEdit, FaTrash } from "react-icons/fa";
 
 import styles from "./BlogCard.module.scss";
-import { UserContext } from "@/contexts/UserContext";
 import { API } from "../../../constants";
+import EditButton from "../EditButton/EditButton";
 
 export default function BlogCard({ _id, cover, title, author, createdAt, summary }) {
-  const {
-    userData: { username },
-  } = useContext(UserContext);
-
   const imageUrl = cover ? `${API}/${cover}` : "https://via.placeholder.com/340x200/eeeeee/cccccc?text=Image+Placeholder";
 
   return (
@@ -24,11 +19,10 @@ export default function BlogCard({ _id, cover, title, author, createdAt, summary
             alt="blog cover"
           />
         </Link>
-        {author.username === username && (
-          <Link className={styles.editButton} href={`/edit/${_id}`}>
-            <FaEdit />
-          </Link>
-        )}
+        <EditButton
+          _id={_id}
+          author={author}
+        />
       </div>
       <div className={styles.texts}>
         <Link href={`/blog/${_id}`}>
